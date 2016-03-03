@@ -10,10 +10,10 @@ public class MyScanFile {
 
 	public static void main (String[] args) throws FileNotFoundException {
 	System.out.println("Enter name of File 1: ");
-	Scanner console = new Scanner(System.in);		// name of the first file to read
+	Scanner console = new Scanner(System.in);		
 	String fileName1 = console.next();
 	System.out.println("Enter name of File 2: ");
-	String fileName2 = console.next();			// name of second file to read
+	String fileName2 = console.next();		
 	Scanner input1 = new Scanner(new File(fileName1));
 	Scanner input2 = new Scanner(new File(fileName2)); 
 	System.out.println("Differences found:");
@@ -25,7 +25,7 @@ public class MyScanFile {
 	
 	public static void differences(Scanner input1, Scanner input2) {
 	int lineCounter = 1; //line number
-	while (input1.hasNextLine() && input2.hasNextLine()) {   //compares each line with each other
+	while (input1.hasNextLine() && input2.hasNextLine()) {   
 		String sameLine1 = input1.nextLine();
 		String sameLine2 = input2.nextLine();
 		if (!sameLine1.equals(sameLine2)) {
