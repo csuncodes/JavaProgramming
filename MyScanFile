@@ -1,0 +1,37 @@
+import java.util.*;
+import java.io.*;
+
+// MyScanFile reads to different files and prints the line number and the line at which the two files differ.
+
+public class MyScanFile {
+
+// Main method reads two given file names and passes the scanners
+// to method differences().
+
+	public static void main (String[] args) throws FileNotFoundException {
+	System.out.println("Enter name of File 1: ");
+	Scanner console = new Scanner(System.in);		// name of the first file to read
+	String fileName1 = console.next();
+	System.out.println("Enter name of File 2: ");
+	String fileName2 = console.next();			// name of second file to read
+	Scanner input1 = new Scanner(new File(fileName1));
+	Scanner input2 = new Scanner(new File(fileName2)); 
+	System.out.println("Differences found:");
+	differences(input1, input2); 
+	}
+	
+	// The method differences() compares each line of the files to eachother.
+	// If a difference is found, the line numbers and lines are printed.
+	
+	public static void differences(Scanner input1, Scanner input2) {
+	int lineCounter = 1; //line number
+	while (input1.hasNextLine() && input2.hasNextLine()) {   //compares each line with each other
+		String sameLine1 = input1.nextLine();
+		String sameLine2 = input2.nextLine();
+		if (!sameLine1.equals(sameLine2)) {
+			System.out.println("Line" + lineCounter + ":\n< " + sameLine1 + "\n> " + sameLine2); //prints line when different
+		}
+		lineCounter++;
+	}
+	}
+}
