@@ -1,0 +1,52 @@
+//MyGuess allows the computer guess a random number that the user is thinking of. General algorithm is based
+// of the binary search algorithm. The algorithm is made so that the computer is able to guess the user's number in under 10 tries.
+
+import java.util.*;
+public class MyGuessNum {
+  
+  // computer generates a random number and passes it to method guessNumber()
+	
+	public static void main(String[] args) {
+		Random rand = new Random();
+		System.out.println("Think of an integer between 1 and 1000.");
+		int randomNumber = rand.nextInt(1000) + 1; // computer chooses random number between 1-1000 (inclusive)
+		System.out.println(randomNumber);
+		System.out.println("Is this value too high (1), too low (2), or correct (3)? (Type in numbers for command.)");
+		guessNumber(randomNumber);
+	}
+	
+	//  The user tells the computer if its initial guess is too high, too low, or correct. The computer
+	// then readjusts its guessing range based on the users response.
+	
+	public static void guessNumber(int randomNumber){
+	Scanner console = new Scanner(System.in);
+	Random rand = new Random();
+	int input = console.nextInt();
+	int max = 500;								// establishes initial max value at the median of the guessing range
+	int min = 0;								// establishes initial min value
+	int count = 0;								// establishes counter
+	do {
+		if (input == 1) {						// value too high
+			max = randomNumber;					// number is now max value
+			randomNumber=rand.nextInt((max-min) + 1) + min;	// guessing range is altered
+			System.out.println(randomNumber);
+			System.out.println("Is this value too high (1), too low (2), or correct (3)?");
+			input = console.nextInt();
+		} else if (input == 2) {				// value too low
+			min = randomNumber;					// number is now min value
+			randomNumber=rand.nextInt((max-min) + 1) + min;		//guessing range is altered
+			System.out.println(randomNumber);
+			System.out.println("Is this value too high (1), too low (2), or correct (3)?");
+			input = console.nextInt();
+		} else if (input == 3) {				// value is correct
+			System.out.println(randomNumber + " is your number!");
+		} else {
+			System.out.println("Incorrect input value.");
+		}
+		count++; // counter is increased each loop
+	} while (input != 3); // loop continues until the value is correct
+	System.out.println("It took " + count + " guesses to guess this value.");
+	}
+}
+		
+		
